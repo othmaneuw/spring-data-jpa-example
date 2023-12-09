@@ -1,37 +1,40 @@
 package com.formation.spring.data.jpa.tutorial.entity;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Course {
+public class Teacher {
     @Id
     @SequenceGenerator(
-            name = "course_sequence",
-            sequenceName = "course_sequence",
+            name = "teacher_sequence",
+            sequenceName = "teacher_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "course_sequence"
+            generator = "teacher_sequence"
     )
-    private Long courseId;
-    private String title;
-    private Integer credit;
-    @OneToOne(mappedBy = "course")
-    private CourseMaterial courseMaterial;
+    private Long teacherId;
+    private String firstName;
+    private String lastName;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    /*@OneToMany(
+            cascade = CascadeType.ALL
+    )
     @JoinColumn(
             name = "teacher_id",
             referencedColumnName = "teacherId"
     )
-    private Teacher teacher;
+    private List<Course> courses;*/
 }

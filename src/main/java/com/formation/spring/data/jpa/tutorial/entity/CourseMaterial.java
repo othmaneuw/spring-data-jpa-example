@@ -10,7 +10,6 @@ import lombok.*;
 @Builder
 @ToString(exclude = "course")
 public class CourseMaterial {
-
     @Id
     @SequenceGenerator(
             name="course_material_sequence",
@@ -26,7 +25,8 @@ public class CourseMaterial {
 
     @OneToOne(
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
+            fetch = FetchType.LAZY,
+            optional = false
     )
     @JoinColumn(
             name = "course_id",
